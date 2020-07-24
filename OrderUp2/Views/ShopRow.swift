@@ -24,6 +24,7 @@ struct ShopRow: View {
                 .frame(maxWidth: 75)
             VStack(alignment: .leading) {
                 Text(item.name)
+                    .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
                 Text("$\(String(format: "%.2f", item.price))")
                     .fontWeight(.bold)
