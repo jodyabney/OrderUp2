@@ -1,47 +1,59 @@
 //
 //  ShopRow.swift
-//  ShoppingCart
+//  OrderUp2
 //
-//  Created by Jody Abney on 7/18/20.
+//  Created by Jody Abney on 7/24/20.
 //  Copyright © 2020 AbneyAnalytics. All rights reserved.
 //
 
 import SwiftUI
 
 struct ShopRow: View {
-    var inCart: Bool
-    var shopItem: ShopItem
+    
+    //MARK: - Data Dependecies
+    @Binding var cartItems: Dictionary<Int, CartItem>
+    
+    //MARK: - Properties
+    var item: ShopItem
+    
     var body: some View {
         HStack {
-            Image(shopItem.imageName)
+            Image(item.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 75)
             VStack(alignment: .leading) {
-                Text(shopItem.name)
+                Text(item.name)
                     .multilineTextAlignment(.leading)
-                Text("$\(String(format: "%.2f", shopItem.price))")
-                .fontWeight(.bold)
+                Text("$\(String(format: "%.2f", item.price))")
+                    .fontWeight(.bold)
                     .foregroundColor(Color.red)
                     .multilineTextAlignment(.leading)
             }
             Spacer()
-            if inCart {
-                StepperView()
-//                Image("checked")
-//                .resizable()
-//                .aspectRatio(1, contentMode: .fit)
-//                .frame(maxWidth: 50)
+            if inCart(shopItem: item) {
+                StepperView(cartItems: self.$cartItems, item: item)
             } else {
                 AddToCart()
+                    .onTapGesture {
+                        self.toggleCartItem(shopItem: self.item)
+                }
             }
+        }
+    }
+    
+    private func inCart(shopItem: ShopItem) -> Bool {
+        return cartItems[shopItem.id] != nil
+    }
+    
+    private func toggleCartItem(shopItem: ShopItem) {
+        if cartItems[shopItem.id] == nil {
+            cartItems[shopItem.id] = CartItem(item: shopItem,
+                                              quantity: 1)
+        } else {
+            cartItems[shopItem.id] = nil
         }
     }
 }
 
-struct ShopRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ShopRow(inCart: false, shopItem: ShopItem(price: 9.99, id: 1, name: "Sandwich with Feied Egg", imageName: "sandwich_with_fried_egg", categoryID: 9))
-        
-    }
-}
+

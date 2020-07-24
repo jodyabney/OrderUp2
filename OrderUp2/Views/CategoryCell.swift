@@ -1,47 +1,41 @@
 //
 //  CategoryCell.swift
-//  OrderUp
+//  OrderUp2
 //
-//  Created by Jody Abney on 7/19/20.
+//  Created by Jody Abney on 7/24/20.
 //  Copyright © 2020 AbneyAnalytics. All rights reserved.
 //
 
 import SwiftUI
 
 struct CategoryCell: View {
-    //MARK: - Properties
-    var isSelected: Bool = false
-    var selectedCategoryID: Int?
     
-    //MARK: - Body
+    //MARK: - Data Dependencies
+    @Binding var selectedCategory: CategoryItem
+    
+    //MARK: - Properties
     var categoryItem: CategoryItem
+    
+    //MARK: - View
     var body: some View {
         VStack {
             Image(categoryItem.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 100)
-            Text(self.categoryItem.name)
-            .font(.headline)
-            .fontWeight(.bold)
-                .foregroundColor(isSelected ? .red : .black)
+                .frame(maxWidth: 75)
+            if categoryItem == self.selectedCategory {
+                Text(categoryItem.name)
+                    .fontWeight(.bold)
+                    .foregroundColor(.red)
+            } else {
+                Text(categoryItem.name)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+            }
         }
-    }
-    
-    private mutating func toggleIsSelected() {
-        isSelected = !isSelected
-        if isSelected {
-            selectedCategoryID = categoryItem.id
-        } else {
-            selectedCategoryID = nil
+        .frame(width: 100, height: 100)
+        .onTapGesture {
+            self.selectedCategory = self.categoryItem
         }
-    }
-}
-
-
-
-struct CategoryCell_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryCell(isSelected: true, categoryItem: CategoryItem(id: 1, name: "Meat", imageName: "turkey"))
     }
 }
