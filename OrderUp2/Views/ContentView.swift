@@ -13,9 +13,10 @@ struct ContentView: View {
     //MARK: - Properties
     var categories: [CategoryItem] = CategoryItem.all()
     var availableItems: [ShopItem] = ShopItem.all()
-    @State var selectedCategory: CategoryItem = CategoryItem(id: 0, name: "All", imageName: "")
+    
     
     //MARK: - Data Dependencies
+    @State var selectedCategory: CategoryItem = CategoryItem(id: 0, name: "All", imageName: "all")
     @State var cartItems: Dictionary<Int, CartItem> = [:]
     
     //MARK: - View

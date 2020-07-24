@@ -29,8 +29,8 @@ extension ShopItem {
             ShopItem(price: 0.99, id: 6, name: "Cherry Donut", imageName: "cherry_donut", categoryID: 3),
             ShopItem(price: 0.25, id: 7, name: "Chili Pepper", imageName: "chili_pepper", categoryID: 4),
             ShopItem(price: 3.99, id: 8, name: "Chinese Noodle", imageName: "chinese_noodle", categoryID: 10),
-            ShopItem(price: 1.49, id: 9, name: "Chips", imageName: "chips", categoryID: 5),
-            ShopItem(price: 1.49, id: 10, name: "Fries", imageName: "fries", categoryID: 5),
+            ShopItem(price: 1.49, id: 10, name: "Chips", imageName: "chips", categoryID: 5),
+            ShopItem(price: 1.49, id: 9, name: "Fries", imageName: "fries", categoryID: 5),
             ShopItem(price: 4.99, id: 11, name: "Ham", imageName: "gammon", categoryID: 1),
             ShopItem(price: 9.99, id: 12, name: "Italian Pizza", imageName: "italian_pizza", categoryID: 6),
             ShopItem(price: 3.49, id: 13, name: "Lemon Cake", imageName: "lemon_cake", categoryID: 3),
@@ -42,6 +42,6 @@ extension ShopItem {
             ShopItem(price: 1.99, id: 19, name: "Tomato and Garlic", imageName: "tomato_and_garlic", categoryID: 4)
             ].sorted(by: { (lhsShopItem, rhsShopItem) -> Bool in
                 return lhsShopItem.name < rhsShopItem.name
-        })
+            })
     }
 }

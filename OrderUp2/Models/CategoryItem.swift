@@ -18,8 +18,8 @@ extension CategoryItem {
     
     static func all() -> [CategoryItem] {
         return [
-            CategoryItem(id: 0, name: "All", imageName: ""),
-            CategoryItem(id: 1, name: "Meat", imageName: "gammon"),
+            CategoryItem(id: 0, name: "All", imageName: "all"),
+            CategoryItem(id: 1, name: "Meat", imageName: "turkey"),
             CategoryItem(id: 2, name: "Drinks", imageName: "takeaway_hot_drink"),
             CategoryItem(id: 3, name: "Desserts", imageName: "lemon_cake"),
             CategoryItem(id: 4, name: "Vegatables", imageName: "beetroot"),
